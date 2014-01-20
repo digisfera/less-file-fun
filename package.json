@@ -9,6 +9,7 @@
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "less": "~1.6.1"
+    "less": "~1.6.1",
+    "file-fun": "*"
   }
 }
