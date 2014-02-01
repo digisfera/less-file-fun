@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test"
   },
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
     "less": "~1.6.1",
-    "file-fun": "*"
+    "file-fun": "*",
+    "lodash": "~2.4.1"
   },
   "devDependencies": {
     "chai": "~1.8.1",
