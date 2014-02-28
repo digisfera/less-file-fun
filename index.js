@@ -49,7 +49,10 @@ exports.file = function(inputFile, outputFile, options, callback) {
     }
 
     less.render(data, compileOptions, function(err, css) {
-      if(err) { return callback(err); }
+      if(err) {
+        err.toString = less.formatError.bind(null, err);
+        return callback(err);
+      }
 
       if(sourceMapContent && sourceMapFile) {
         filerw.mkWriteFiles([[outputFile, css], [sourceMapFile, sourceMapContent]], function(err, result) {

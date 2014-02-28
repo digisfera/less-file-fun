@@ -23,6 +23,19 @@ describe('less-file-fun', function() {
     });
   });
 
+  it('should return error on invalid code', function(done) {
+    lessFun.file(__dirname + '/files/subdir/testinvalid.less', __dirname + '/tmp/testinvalid.css', { sourceMap: true }, function(err, result) {
+      expect(err).to.be.ok;
+      //console.log(err);     
+      console.log(err.toString());
+      expect(fs.existsSync(__dirname + '/tmp/testinvalid.css')).to.equal(false);
+      expect(fs.existsSync(__dirname + '/tmp/testinvalid.css.map')).to.equal(false);
+      done();
+    });
+  });
+
+  it('should return error when file does not exist');
+
   it('should compile glob', function(done) {
     lessFun.glob('*.less', __dirname + '/files', __dirname + '/tmp/glob01', { sourceMapDir: __dirname + '/tmp/glob01-maps' }, function(err, result) {
       expect(err).to.be.not.ok;
