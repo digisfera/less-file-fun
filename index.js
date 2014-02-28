@@ -31,6 +31,8 @@ exports.file = function(inputFile, outputFile, options, callback) {
 
   fs.readFile(inputFile, { encoding: 'utf-8' }, function(err, data) {
 
+    if(err) { return callback(err); }
+
     var compileOptions = _.clone(options);
     compileOptions.paths = path.dirname(inputFile);
     compileOptions.filename = path.basename(inputFile);
