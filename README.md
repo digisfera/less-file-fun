@@ -28,6 +28,7 @@ Uses the [mirror-glob](https://github.com/digisfera/node-mirror-glob) module to 
 * `options`
   * `watch` - (default: `false`) whether the files should be watched for changes
   * `sourceMapDir` - enable source maps, writing them to the specified directory
+  * `noWrite` - do not write files, only return results
 * `callback` - function to be called after the initial processing is finished, with `(err, results)`
 * `updateCallback` - function to be called after processing is finished due to a file being changed or added. only called when `options.watch` is `true`
 * `removeCallback` - function to be called after a file is removed. only called when `options.watch` is `true`
