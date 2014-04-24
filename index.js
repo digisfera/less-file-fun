@@ -55,18 +55,27 @@ exports.file = function(inputFile, outputFile, options, callback) {
         err.toString = less.formatError.bind(null, err);
         return callback(err);
       }
-
       if(sourceMapContent && sourceMapFile) {
-        filerw.mkWriteFiles([[outputFile, css], [sourceMapFile, sourceMapContent]], function(err, result) {
-          if(err) { callback(err); }
-          else { callback(null, { outputFile: outputFile, outputData: css, sourceMapFile: sourceMapFile, sourceMapData: sourceMapContent}); }
-        });
+        var toReturn = { outputFile: outputFile, outputData: css, sourceMapFile: sourceMapFile, sourceMapData: sourceMapContent };
+
+        if(options.noWrite) { callback(null, toReturn); }
+        else {
+          filerw.mkWriteFiles([[outputFile, css], [sourceMapFile, sourceMapContent]], function(err, result) {
+            if(err) { callback(err); }
+            else { callback(null, toReturn); }
+          });
+        }
       }
       else {
-        filerw.mkWriteFile(outputFile, css, function(err, result) {
-          if(err) { callback(err); }
-          else { callback(null, { outputFile: outputFile, outputData: css }); }
-        });
+        var toReturn = { outputFile: outputFile, outputData: css };
+
+        if(options.noWrite) { callback(null, toReturn); }
+        else {
+          filerw.mkWriteFile(outputFile, css, function(err, result) {
+            if(err) { callback(err); }
+            else { callback(null, toReturn); }
+          });
+        }
       }
     });
 

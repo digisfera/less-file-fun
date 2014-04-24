@@ -62,4 +62,19 @@ describe('less-file-fun', function() {
     });
   });
 
+
+  it('should not write output with noWrite', function(done) {
+    lessFun.file(__dirname + '/files/test01.less', __dirname + '/tmp/test05.css', { sourceMap: true, noWrite: true }, function(err, result) {
+      expect(err).to.be.not.ok;
+      expect(result).to.have.property('outputFile').that.equals( __dirname + '/tmp/test05.css')
+      expect(result).to.have.property('sourceMapFile').that.equals( __dirname + '/tmp/test05.css.map')
+      expect(result).to.have.property('outputData').with.length.greaterThan(0)
+      expect(result).to.have.property('sourceMapData').with.length.greaterThan(0)
+      expect(fs.existsSync(__dirname + '/tmp/test05.css')).to.be.not.ok
+      expect(fs.existsSync(__dirname + '/tmp/test05.css.map')).to.be.not.ok
+      done();
+    });
+  });
+
+
 });

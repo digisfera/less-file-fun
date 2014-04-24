@@ -14,6 +14,7 @@ Compile LESS files
 * `outputFile` - path in which to write compiled file
 * `options` - options for `less.render()` plus the following:
   * `sourceMap` - enable source map, writing it to this file
+  * `noWrite` - do not write files, only return result
 * `callback` - function that will be called with `(err, { outputFile, outputData, sourceMapFile, sourceMapData })`
 
 
